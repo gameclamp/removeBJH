@@ -5,6 +5,7 @@
 // @description  
 // @author       gameclamp
 // @match        http://www.700mh.com/manhua/*
+// @match        http://www.taduo.net/manhua/*
 // @grant        none
 // ==/UserScript==
 
@@ -12,8 +13,13 @@
     'use strict';
     document.querySelector('#viewimages').innerHTML='';
     photosr.forEach(function(img){
-        img = 'http://katui.700mh.com/'+img;
+        img = WebimgServerURL[0]+img;
         document.querySelector('#viewimages').innerHTML+=`<img src='${img}'>`;
     });
-    page=9999;
+    $j.post('/e/extend/ret_page/index.php',{id:viewid},function(data){
+        if(data.status==1){
+            $j('.next').attr('href',data.url);
+            $j('body').append(`<iframe src="${data.url.match(/\d+/g)[1]}.html" style="display:none"></iframe>`)
+        }
+    },"json");
 })();
