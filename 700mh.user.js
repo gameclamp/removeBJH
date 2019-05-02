@@ -4,6 +4,8 @@
 // @version      0.1
 // @description  
 // @author       gameclamp
+// @downloadURL  https://github.com/gameclamp/removeBJH/raw/master/700mh.user.js
+// @updateURL    https://github.com/gameclamp/removeBJH/raw/master/700mh.user.js
 // @match        http://www.700mh.com/manhua/*
 // @match        http://www.taduo.net/manhua/*
 // @grant        none
