@@ -26,7 +26,7 @@
         }else{
             img = WebimgServerURL[0]+img;
         }
-        document.querySelector('#viewimages').innerHTML+=`<img src='${img}'>`;
+        document.querySelector('#viewimages').innerHTML+=`<img src='${img}' style='padding:0px'>`;
     });
     $j.post('/e/extend/ret_page/index.php',{id:viewid},function(data){
         if(data.status==1){
