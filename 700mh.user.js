@@ -7,15 +7,25 @@
 // @downloadURL  https://github.com/gameclamp/removeBJH/raw/master/700mh.user.js
 // @updateURL    https://github.com/gameclamp/removeBJH/raw/master/700mh.user.js
 // @match        http://www.700mh.com/manhua/*
+// @match        http://www.pufei.net/manhua/*
 // @match        http://www.taduo.net/manhua/*
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
+    let option = document.querySelector('#selectpage1 option:last-child');
+    if(!option.selected == true){
+        document.querySelector('#selectpage1 option:last-child').selected = true;
+        document.querySelector('#selectpage1>select').onchange();
+    }
     document.querySelector('#viewimages').innerHTML='';
     photosr.forEach(function(img){
-        img = WebimgServerURL[0]+img;
+        if(location.href.indexOf('www.pufei.net')>=0){
+            img = loadview.toString().match(/imgserver = \'(.*?)\'/)[1]+img;
+        }else{
+            img = WebimgServerURL[0]+img;
+        }
         document.querySelector('#viewimages').innerHTML+=`<img src='${img}'>`;
     });
     $j.post('/e/extend/ret_page/index.php',{id:viewid},function(data){
